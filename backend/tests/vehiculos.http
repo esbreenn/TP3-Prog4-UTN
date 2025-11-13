@@ -1,0 +1,36 @@
+@api = http://localhost:3000
+@token = {{login.response.body.token}}
+
+### Crear vehículo
+POST {{api}}/vehiculos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "marca": "Ford",
+  "modelo": "Cargo",
+  "patente": "AA111AA",
+  "año": 2020,
+  "capacidad_carga": 5000
+}
+
+### Listar vehículos
+GET {{api}}/vehiculos
+Authorization: Bearer {{token}}
+
+### Actualizar vehículo
+PUT {{api}}/vehiculos/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "marca": "Iveco",
+  "modelo": "Tector",
+  "patente": "AA999AA",
+  "año": 2019,
+  "capacidad_carga": 7000
+}
+
+### Eliminar vehículo
+DELETE {{api}}/vehiculos/1
+Authorization: Bearer {{token}}

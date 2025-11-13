@@ -1,0 +1,23 @@
+@api = http://localhost:3000
+
+### Login
+# @name login
+POST {{api}}/auth/login
+Content-Type: application/json
+
+{
+  "nombre": "gonzalo",
+  "contraseña": "Gonza1234"
+}
+
+@token = {{login.response.body.token}}
+
+### Registro
+POST {{api}}/auth/register
+Content-Type: application/json
+
+{
+  "nombre": "nuevo",
+  "email": "nuevo@test.com",
+  "contraseña": "Nuevo1234"
+}

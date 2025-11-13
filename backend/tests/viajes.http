@@ -1,0 +1,36 @@
+@api = http://localhost:3000
+@token = {{login.response.body.token}}
+
+### Registrar viaje
+POST {{api}}/viajes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "vehiculo_id": 1,
+  "conductor_id": 1,
+  "fecha": "2024-11-10",
+  "origen": "La Rioja",
+  "destino": "Córdoba",
+  "kilometros": 450
+}
+
+### Ver todos los viajes
+GET {{api}}/viajes
+Authorization: Bearer {{token}}
+
+### Historial por vehículo
+GET {{api}}/viajes?vehiculoId=1
+Authorization: Bearer {{token}}
+
+### Historial por conductor
+GET {{api}}/viajes?conductorId=1
+Authorization: Bearer {{token}}
+
+### Total km por vehículo
+GET {{api}}/viajes/total-km?vehiculoId=1
+Authorization: Bearer {{token}}
+
+### Total km por conductor
+GET {{api}}/viajes/total-km?conductorId=1
+Authorization: Bearer {{token}}

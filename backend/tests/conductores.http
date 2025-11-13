@@ -1,0 +1,36 @@
+@api = http://localhost:3000
+@token = {{login.response.body.token}}
+
+### Crear conductor
+POST {{api}}/conductores
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Pedro",
+  "apellido": "Luque",
+  "dni": "33222111",
+  "licencia": "CAT-C",
+  "fecha_vencimiento_licencia": "2026-05-20"
+}
+
+### Listar conductores
+GET {{api}}/conductores
+Authorization: Bearer {{token}}
+
+### Actualizar conductor
+PUT {{api}}/conductores/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Gonzalo",
+  "apellido": "Romero",
+  "dni": "45589255",
+  "licencia": "CAT-C",
+  "fecha_vencimiento_licencia": "2027-02-01"
+}
+
+### Eliminar conductor
+DELETE {{api}}/conductores/1
+Authorization: Bearer {{token}}
