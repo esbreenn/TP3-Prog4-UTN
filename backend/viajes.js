@@ -1,7 +1,7 @@
 import express from "express";
 import { db } from "./db.js";
 import { verificarAutenticacion } from "./auth.js";
-import { validarViaje, verificarValidaciones } from "./validaciones.js";
+import { validarViaje, validarId, verificarValidaciones } from "./validaciones.js";
 
 const router = express.Router();
 
@@ -69,5 +69,28 @@ router.get("/total-km", verificarAutenticacion, async (req, res) => {
 
   res.json({ success: true, total_km: rows[0].total_km || 0 });
 });
+
+// Eliminar viaje
+router.delete(
+  "/:id",
+  verificarAutenticacion,
+  validarId,
+  verificarValidaciones,
+  async (req, res) => {
+    const { id } = req.params;
+
+    const [resultado] = await db.execute("DELETE FROM viaje WHERE id = ?", [id]);
+
+    if (resultado.affectedRows === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Viaje no encontrado" });
+    }
+
+    res.json({ success: true, message: "Viaje eliminado" });
+  }
+);
+
+
 
 export default router;
